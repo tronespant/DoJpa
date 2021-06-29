@@ -1,5 +1,6 @@
 package cn.hx.myjpa.service;
 
+import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface UserService {
     List<User> getUserByPage(int page);
     Future<List<User>> getUserByIdLessThan(Long ids);
     CompletableFuture<User> getUserByName(String name);
+    NameOnly getNameById(Long ids);
 }

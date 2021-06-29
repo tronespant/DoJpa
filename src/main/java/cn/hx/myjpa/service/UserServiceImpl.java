@@ -1,5 +1,6 @@
 package cn.hx.myjpa.service;
 
+import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
 import cn.hx.myjpa.repository.UserOriginRepository;
 import cn.hx.myjpa.repository.UserPageRepository;
@@ -53,6 +54,12 @@ public class UserServiceImpl implements UserService{
         CompletableFuture<User> proxy = userOriginRepository.findUserByName(name);
 
         return proxy;
+    }
+
+    @Override
+    public NameOnly getNameById(Long ids) {
+        NameOnly name = userOriginRepository.findNameById(ids);
+        return name;
     }
 
 }

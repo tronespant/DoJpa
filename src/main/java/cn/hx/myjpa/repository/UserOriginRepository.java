@@ -1,5 +1,6 @@
 package cn.hx.myjpa.repository;
 
+import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
 import org.springframework.data.repository.Repository;
 
@@ -11,4 +12,5 @@ public interface UserOriginRepository extends Repository<User,Long> {
     User findUserById(Long id);
     Future<List<User>> findAllByIdLessThan(Long ids);
     CompletableFuture<User> findUserByName(String name);
+    NameOnly findNameById(Long id);
 }

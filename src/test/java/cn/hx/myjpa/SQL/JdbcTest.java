@@ -1,5 +1,6 @@
 package cn.hx.myjpa.SQL;
 
+import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
 import cn.hx.myjpa.service.UserService;
 import org.junit.Before;
@@ -26,9 +27,7 @@ public class JdbcTest {
 
         }
     }
-    @Test
-    public void test() throws InterruptedException {
-        CompletableFuture<User> user = userService.getUserByName("dong");
+    /*   CompletableFuture<User> user = userService.getUserByName("dong");
         user.thenApplyAsync((entiy)->{
            return entiy.getId()+":日志记录成功";
         }).thenAccept((result)->{
@@ -36,7 +35,12 @@ public class JdbcTest {
         });
 
         System.out.println("suka");
-        Thread.sleep(5000);
+        Thread.sleep(5000);*/
+    @Test
+    public void test() throws InterruptedException {
+        NameOnly result = userService.getNameById(11L);
+        System.out.println(result.getName());
+
 
 
 
