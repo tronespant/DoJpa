@@ -39,11 +39,11 @@ public class JdbcTest {
     @Test
     public void test() throws InterruptedException {
         NameOnly result = userService.getNameById(11L);
-        System.out.println(result.getName());
-
-
-
-
+        System.out.println(result.getFullInfo());
     }
 
+    @Test
+    public void testAnno(){
+        System.out.println(userService.QueryUserById(11L));
+    }
 }

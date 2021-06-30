@@ -13,4 +13,7 @@ public interface UserService {
     Future<List<User>> getUserByIdLessThan(Long ids);
     CompletableFuture<User> getUserByName(String name);
     NameOnly getNameById(Long ids);
+    User sbypss(String pass);
+    List<User> getBaseRoleUser(String name);
+    User QueryUserById(Long id);
 }

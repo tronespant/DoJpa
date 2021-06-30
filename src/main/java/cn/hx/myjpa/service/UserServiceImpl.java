@@ -62,4 +62,20 @@ public class UserServiceImpl implements UserService{
         return name;
     }
 
+    @Override
+    public User sbypss(String pass) {
+        return userOriginRepository.findByPassword("4");
+    }
+
+    @Override
+    public List<User> getBaseRoleUser(String name) {
+        return userOriginRepository.findbyName(name);
+    }
+
+    @Override
+    public User QueryUserById(Long id) {
+        return userOriginRepository.queryUserById(id);
+    }
+
+
 }
