@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -75,6 +76,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public User QueryUserById(Long id) {
         return userOriginRepository.queryUserById(id);
+    }
+
+    @Override
+    public Future<List<User>> queryAllByIdBefore(Long ids) {
+        return userOriginRepository.queryAllByIdBefore(ids);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_UNCOMMITTED)
+    public int setFixedPasswordFor(Long id, String password) {
+        return userOriginRepository.setFixedPasswordFor(id,password);
+    }
+
+    @Override
+    public Integer getUserByProcedure(Integer ids) {
+        return userOriginRepository.getUserByProcedure(ids);
     }
 
 
