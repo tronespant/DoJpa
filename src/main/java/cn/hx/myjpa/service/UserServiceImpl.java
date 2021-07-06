@@ -8,6 +8,7 @@ import cn.hx.myjpa.repository.UserOriginRepository;
 import cn.hx.myjpa.repository.UserPageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -105,6 +105,11 @@ public class UserServiceImpl implements UserService{
         origin.setDepartMent(dep);
         jpaRepository.save(origin);
 
+    }
+
+    @Override
+    public List<User> findUserByExample(Example<User> example) {
+        return jpaRepository.findAll(example);
     }
 
 
