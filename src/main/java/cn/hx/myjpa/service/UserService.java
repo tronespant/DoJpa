@@ -24,6 +24,12 @@ public interface UserService {
     int setFixedPasswordFor(Long id,String password);
     Integer getUserByProcedure(Integer ids);
     void updateUser(User user);
+
+    /**
+     * @description 优点 方便组织条件 不足 查询数据库次数过多
+     * @param example
+     * @return
+     */
     List<User> findUserByExample(Example<User> example);
 
 }

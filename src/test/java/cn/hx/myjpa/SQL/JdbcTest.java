@@ -111,12 +111,18 @@ public class JdbcTest {
 
     @Test
     public void testAnno(){
-        User user=userService.findUserById(11L);
-        System.out.println(user.toString());
+/*        User user=userService.findUserById(11L);
+        System.out.println(user.toString());*/
         User userT=new User();
-        user.setId(11L);
-        ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("id", ExampleMatcher.GenericPropertyMatchers.contains());
+        userT.setName("16");
+        userT.setPassword("4");
+        ExampleMatcher matcher=ExampleMatcher.matching().withIgnorePaths("id").withIgnoreCase("password")
+                .withMatcher("password",ExampleMatcher.GenericPropertyMatchers.endsWith())
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.startsWith());
         Example<User> example=Example.of(userT,matcher);
+        userService.findUserByExample(example).stream().forEach(user1 -> {
+            System.out.println(user1.toString());
+        });
 
     }
 }
