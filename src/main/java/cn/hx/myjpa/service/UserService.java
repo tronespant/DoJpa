@@ -2,6 +2,7 @@ package cn.hx.myjpa.service;
 
 import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.mail.MailParseException;
 
 import java.util.List;
@@ -21,5 +22,6 @@ public interface UserService {
     Future<List<User>> queryAllByIdBefore(Long ids);
     int setFixedPasswordFor(Long id,String password);
     Integer getUserByProcedure(Integer ids);
+    void updateUser(User user);
 
 }

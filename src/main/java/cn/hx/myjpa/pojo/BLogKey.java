@@ -8,12 +8,13 @@ import java.util.Objects;
 @Data
 public class BLogKey implements Serializable {
     private String title;
-    private Integer createUserId;
+    private Long createUserId;
     public BLogKey(){}
 
-    public BLogKey(String title, Integer createUserId) {
+
+    public BLogKey(String title, Long createUserId) {
         this.title = title;
-        this.createUserId = createUserId;
+        this.createUserId=createUserId;
     }
 
     @Override

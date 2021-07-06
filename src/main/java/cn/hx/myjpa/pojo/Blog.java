@@ -5,6 +5,8 @@ import lombok.ToString;
 import org.springframework.cache.annotation.EnableCaching;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +14,7 @@ import java.util.Objects;
 @IdClass(value = BLogKey.class)
 @Data
 @ToString
-public class Blog {
+public class Blog implements Serializable {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +23,14 @@ public class Blog {
     private String title;
     @Id
     @Column(name = "createUserId",nullable = false)
-    private  Integer createUserId;
+    private  Long createUserId;
+    @ManyToMany
+    @JoinTable(
+            name = "blog_tag_relation",
+            joinColumns = @JoinColumn(name = "blog_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id",referencedColumnName = "id")
+    )
+    private List<Tag> tags;
 
     @Override
     public boolean equals(Object o) {

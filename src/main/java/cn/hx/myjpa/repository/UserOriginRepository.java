@@ -3,6 +3,7 @@ package cn.hx.myjpa.repository;
 import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
 import org.elasticsearch.action.ValidateActions;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -15,6 +16,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 public interface UserOriginRepository extends Repository<User,Long> {
+    @EntityGraph("User.departMent")
     User findUserById(Long id);
     Future<List<User>> findAllByIdLessThan(Long ids);
     CompletableFuture<User> findUserByName(String name);
@@ -33,4 +35,5 @@ public interface UserOriginRepository extends Repository<User,Long> {
     //TODO
     @Procedure(name = "plus1inout")
     Integer getUserByProcedure(Integer arg);
+
 }

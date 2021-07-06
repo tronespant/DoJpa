@@ -23,7 +23,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 @ConfigurationProperties(prefix = "jpa.default")
 @PropertySource(value = "classpath:jpa.properties")
 @Data
-@EnableCaching
+//@EnableCaching
 public class PageConfig {
 
     public int pagesize;

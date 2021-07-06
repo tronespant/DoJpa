@@ -1,7 +1,9 @@
 package cn.hx.myjpa.service;
 
+import cn.hx.myjpa.pojo.DepartMent;
 import cn.hx.myjpa.pojo.NameOnly;
 import cn.hx.myjpa.pojo.User;
+import cn.hx.myjpa.repository.UserJpaRepository;
 import cn.hx.myjpa.repository.UserOriginRepository;
 import cn.hx.myjpa.repository.UserPageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import java.util.concurrent.Future;
 public class UserServiceImpl implements UserService{
     @Autowired
     UserOriginRepository userOriginRepository;
+    @Autowired
+    UserJpaRepository jpaRepository;
     @Autowired
 
     UserPageRepository userPageRepository;
@@ -92,6 +96,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer getUserByProcedure(Integer ids) {
         return userOriginRepository.getUserByProcedure(ids);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        User origin = jpaRepository.getById(user.getId());
+        DepartMent dep = user.getDepartMent();
+        origin.setDepartMent(dep);
+        jpaRepository.save(origin);
+
     }
 
 
