@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -111,6 +113,10 @@ public class JdbcTest {
     public void testAnno(){
         User user=userService.findUserById(11L);
         System.out.println(user.toString());
+        User userT=new User();
+        user.setId(11L);
+        ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("id", ExampleMatcher.GenericPropertyMatchers.contains());
+        Example<User> example=Example.of(userT,matcher);
 
     }
 }
